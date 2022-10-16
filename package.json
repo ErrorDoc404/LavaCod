@@ -1,0 +1,21 @@
+{
+  "name": "lavacod",
+  "version": "1.0.0",
+  "description": "Discord Music bot v14",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ErrorDoc404/LavaCod.git"
+  },
+  "keywords": [
+    "Music"
+  ],
+  "author": "ErrorDoc404",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.6.0"
+  }
+}
