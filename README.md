@@ -1,6 +1,6 @@
-# Activity
+# LavaCod
 
-Activity is advance discord music bot with button interaction
+LavaCod is advance discord music bot with button interaction
 
 # Installation
 
@@ -21,7 +21,6 @@ touch .env
 .env file
 
 ```env
-BUILD_TOKEN=youshallnotpass
 TOKEN=
 Discord_ClientID=
 MONGOOSE_URL=
@@ -42,8 +41,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-<a href="https://github.com/ErrorDoc404/activity/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=ErrorDoc404/activity" />
+<a href="https://github.com/ErrorDoc404/LavaCod/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=ErrorDoc404/LavaCod" />
 </a>
 
 ## License
