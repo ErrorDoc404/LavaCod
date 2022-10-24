@@ -1,5 +1,7 @@
-const DiscordMusicBot = require('./library/DiscordMusicBot');
+const DiscordActivityBot = require('./library/DiscordActivityBot');
 
-const client = new DiscordMusicBot();
+const client = new DiscordActivityBot();
 
-client.build(); 
+client.build(client.config.buildToken);
+
+module.exports = client;

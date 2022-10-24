@@ -18,13 +18,13 @@ module.exports = {
     },
 
     // lavalink server
-    lavalink: [{
+    lavalink: {
       id: "KartaDharta",
       host: 'kartadharta.xyz',
-      port: 3001,
+      port: 3000,
       password: 'kdlavalink',
       secure: false,
-    }],
+    },
 
     Spotify: {
       ClientID: process.env.Spotify_ClientID || "", //Spotify Client ID
