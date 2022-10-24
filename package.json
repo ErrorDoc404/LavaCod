@@ -16,6 +16,9 @@
   "author": "ErrorDoc404",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.6.0"
+    "colors": "^1.4.0",
+    "discord.js": "^14.6.0",
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security"
   }
 }
