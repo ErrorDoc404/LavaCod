@@ -4,6 +4,7 @@ module.exports = {
   name: 'play',
   run: async (client, interaction, parms) => {
     const player = await client.manager.get(interaction.guildId);
+    console.log(player);
     const guild = client.guilds.cache.get(interaction.guildId);
     const member = guild.members.cache.get(interaction.member.user.id);
     if (!player) return interaction.reply({content: `❌ | **Nothing in Queue to play right now...**`}).catch(err => {client.error(err)});
@@ -22,10 +23,10 @@ module.exports = {
         .setCustomId('skip')
         .setLabel('⏭️ Skip')
         .setStyle('SECONDARY'),
-      // new MessageButton()
-      //   .setCustomId('loop')
-      //   .setLabel('🔁 Loop')
-      //   .setStyle('DANGER'),
+      new MessageButton()
+        .setCustomId('loop')
+        .setLabel('🔁 Loop')
+        .setStyle('DANGER'),
       new MessageButton()
         .setCustomId('stop')
         .setLabel('⏹️ Stop')
@@ -36,30 +37,30 @@ module.exports = {
         .setStyle('SECONDARY'),
     ]);
 
-    // const row1 = new MessageActionRow().addComponents([
-    //   new MessageButton()
-    //     .setCustomId('minvolume')
-    //     .setLabel('🔈 Vol -')
-    //     .setStyle('SECONDARY'),
-    //   new MessageButton()
-    //     .setCustomId('addvolume')
-    //     .setLabel('🔊 Vol +')
-    //     .setStyle('SECONDARY'),
-    //   new MessageButton()
-    //     .setCustomId('clear')
-    //     .setLabel('🗑️ Clear')
-    //     .setStyle('SECONDARY'),
-    //   new MessageButton()
-    //     .setCustomId('grab')
-    //     .setLabel('🎣 Grab')
-    //     .setStyle('SECONDARY'),
-    //   new MessageButton()
-    //     .setCustomId('track')
-    //     .setLabel('⏭️ Track')
-    //     .setStyle('SECONDARY'),
-    // ]);
+    const row1 = new MessageActionRow().addComponents([
+      new MessageButton()
+        .setCustomId('summon')
+        .setLabel('⚡ Summon')
+        .setStyle('SECONDARY'),
+      new MessageButton()
+        .setCustomId('queuelist')
+        .setLabel('🧾 Queue List')
+        .setStyle('SECONDARY'),
+      new MessageButton()
+        .setCustomId('clear')
+        .setLabel('🗑️ Clear')
+        .setStyle('SECONDARY'),
+      new MessageButton()
+        .setCustomId('grab')
+        .setLabel('🎣 Grab')
+        .setStyle('SECONDARY'),
+      new MessageButton()
+        .setCustomId('stats')
+        .setLabel('👾 Stats')
+        .setStyle('SECONDARY'),
+    ]);
 
-    client.musicMessage[interaction.guildId].edit({components: [row]});
+    client.musicMessage[interaction.guildId].edit({components: [row, row1]});
     return interaction.reply({content: `✅ | Music Resume`}).catch(err => {client.error(err)});
   }
 }

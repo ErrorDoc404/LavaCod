@@ -14,17 +14,17 @@ module.exports = {
 
     const row = new MessageActionRow().addComponents([
       new MessageButton()
-        .setCustomId('play')
-        .setLabel('▶️ Play')
-        .setStyle('SUCCESS'),
+        .setCustomId('pause')
+        .setLabel('⏸️ Pause')
+        .setStyle('PRIMARY'),
       new MessageButton()
         .setCustomId('skip')
         .setLabel('⏭️ Skip')
         .setStyle('SECONDARY'),
-      // new MessageButton()
-      //   .setCustomId('loop')
-      //   .setLabel('🔁 Loop')
-      //   .setStyle('DANGER'),
+      new MessageButton()
+        .setCustomId('loop')
+        .setLabel('🔁 Loop')
+        .setStyle('DANGER'),
       new MessageButton()
         .setCustomId('stop')
         .setLabel('⏹️ Stop')
@@ -35,30 +35,30 @@ module.exports = {
         .setStyle('SECONDARY'),
     ]);
 
-    // const row1 = new MessageActionRow().addComponents([
-    //   new MessageButton()
-    //     .setCustomId('minvolume')
-    //     .setLabel('🔈 Vol -')
-    //     .setStyle('SECONDARY'),
-    //   new MessageButton()
-    //     .setCustomId('addvolume')
-    //     .setLabel('🔊 Vol +')
-    //     .setStyle('SECONDARY'),
-    //   new MessageButton()
-    //     .setCustomId('clear')
-    //     .setLabel('🗑️ Clear')
-    //     .setStyle('SECONDARY'),
-    //   new MessageButton()
-    //     .setCustomId('grab')
-    //     .setLabel('🎣 Grab')
-    //     .setStyle('SECONDARY'),
-    //   new MessageButton()
-    //     .setCustomId('track')
-    //     .setLabel('⏭️ Track')
-    //     .setStyle('SECONDARY'),
-    // ]);
+    const row1 = new MessageActionRow().addComponents([
+      new MessageButton()
+        .setCustomId('summon')
+        .setLabel('⚡ Summon')
+        .setStyle('SECONDARY'),
+      new MessageButton()
+        .setCustomId('queuelist')
+        .setLabel('🧾 Queue List')
+        .setStyle('SECONDARY'),
+      new MessageButton()
+        .setCustomId('clear')
+        .setLabel('🗑️ Clear')
+        .setStyle('SECONDARY'),
+      new MessageButton()
+        .setCustomId('grab')
+        .setLabel('🎣 Grab')
+        .setStyle('SECONDARY'),
+      new MessageButton()
+        .setCustomId('stats')
+        .setLabel('👾 Stats')
+        .setStyle('SECONDARY'),
+    ]);
 
-    client.musicMessage[interaction.guildId].edit({components: [row]});
+    client.musicMessage[interaction.guildId].edit({components: [row, row1]});
     return interaction.reply({content: `✅ | Music Paused`}).catch(err => {client.error(err)});
   }
 }
