@@ -67,8 +67,8 @@ class DiscordActivityBot extends Client {
           else {
             content = `\n**[ Now Playing ]**\n${track.title}.\n**[ ${player.queue.length} Songs in Queue ]**`;
             musicMsg.edit({content: content});
-            this.playSong(track.title,player.queue.length);
           };
+          this.playSong(track.title,player.queue.length);
           const musicEmbed = musicMsg.embeds[0];
           const thumbnail = track.thumbnail ? track.thumbnail.replace('default', 'hqdefault') : 'https://c.tenor.com/eDVrPUBkx7AAAAAd/anime-sleepy.gif';
           const msgEmbed = {
