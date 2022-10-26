@@ -30,6 +30,8 @@ module.exports = {
       ClientID: process.env.Spotify_ClientID || "", //Spotify Client ID
       ClientSecret: process.env.Spotify_ClientSecret || "", //Spotify Client Secret
     },
+    retryDelay: 200,
+    retryAmount: 40,
 
     mongooseURL: process.env.MONGOOSE_URL || "",
 };

@@ -51,7 +51,7 @@ module.exports = {
           }
 
         if(player.queue.length == 1){
-          content = client.musicMessage[message.guild.id].content + `\n**[ ${player.queue.length} Songs in Queue ]**`;
+          content = `**[ Now Playing ]**\n${player.queue.current.title}.\n**[ ${player.queue.length} Songs in Queue ]**`;
           client.musicMessage[message.guild.id].edit({content: content});
         } else if(player.queue.length > 1) {
           content = client.musicMessage[message.guild.id].content.replace(`${(player.queue.length - 1)} Songs in Queue` , `${player.queue.length} Songs in Queue`);

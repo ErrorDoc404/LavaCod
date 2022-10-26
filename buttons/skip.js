@@ -12,7 +12,6 @@ module.exports = {
       if (!member.voice.channel) return client.sendTime(interaction, "❌ | **You must be in a voice channel to use this command.**");
       player.stop();
       client.skipSong[interaction.guildId] = true;
-      console.log(client.skipBy);
       client.skipBy[interaction.guildId] = member.user;
       return interaction.reply({content: `✅ | **You skip this song.**`}).catch(err => {client.error(err)});
     }

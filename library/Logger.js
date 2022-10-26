@@ -29,6 +29,15 @@ class Logger {
     );
   }
 
+  playSong(song, queueLength) {
+    let d = new Date();
+    console.error(
+      colors.yellow(
+        `[${d.getDate()}:${d.getMonth()}:${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()}]`
+      ) + colors.yellow(" | In Queue [" + queueLength + "] | Current Track [") + colors.cyan(`${song}`) + colors.yellow(']')
+    );
+  }
+
   commands(Text) {
     let d = new Date();
     console.log(

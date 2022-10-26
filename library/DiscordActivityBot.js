@@ -7,9 +7,9 @@ const mongoose = require('mongoose');
 const GuildConfig = require("../mongoose/database/schemas/GuildConfig");
 const play = require('../music/play.js');
 const { Manager } = require("erela.js");
-const { LavasfyClient } = require('lavasfy');
+const Spotify = require("better-erela.js-spotify").default;
+const { default: AppleMusic } = require("better-erela.js-apple");
 const deezer = require("erela.js-deezer");
-const apple = require("erela.js-apple");
 const facebook = require("erela.js-facebook");
 
 class DiscordActivityBot extends Client {
@@ -36,39 +36,19 @@ class DiscordActivityBot extends Client {
 
       var client = this;
 
-      // Lavasfy
-      this.Lavasfy = new LavasfyClient(
-        {
-          clientID: this.config.Spotify.ClientID,
-          clientSecret: this.config.Spotify.ClientSecret,
-          playlistLoadLimit: 100,
-          audioOnlyResults: true,
-          autoResolve: true,
-          useSpotifyMetadata: true
-        },
-        [
-          {
-            id: this.config.lavalink.id,
-            host: this.config.lavalink.host,
-            port: this.config.lavalink.port,
-            password: this.config.lavalink.pass,
-          },
-        ]
-      );
-
       // Initiate the Manager with some options and listen to some events.
       this.manager = new Manager({
         autoPlay: true,
         // plugins
         plugins: [
           new deezer(),
-        //   new Spotify({
-        //     clientID: this.config.Spotify.ClientID,
-        //     clientSecret: this.config.Spotify.ClientSecret
-        //   }),
-          new apple(),
+          new AppleMusic(),
+          new Spotify(),
           new facebook(),
         ],
+        autoPlay: true,
+        retryDelay: this.config.retryDelay,
+        retryAmount: this.config.retryAmount,
         // Pass an array of node.
         nodes: [this.config.lavalink],
         // A send method to send data to the Discord WebSocket using your library.
@@ -87,6 +67,7 @@ class DiscordActivityBot extends Client {
           else {
             content = `\n**[ Now Playing ]**\n${track.title}.\n**[ ${player.queue.length} Songs in Queue ]**`;
             musicMsg.edit({content: content});
+            this.playSong(track.title,player.queue.length);
           };
           const musicEmbed = musicMsg.embeds[0];
           const thumbnail = track.thumbnail ? track.thumbnail.replace('default', 'hqdefault') : 'https://c.tenor.com/eDVrPUBkx7AAAAAd/anime-sleepy.gif';
@@ -182,7 +163,7 @@ class DiscordActivityBot extends Client {
 
           musicMsg.edit({content: `**[ Nothing Playing ]**\nJoin a voice channel and queue songs by name or url in here.`, embeds: [embed], components: [row, row1]});
 
-          // player.destroy();
+          player.destroy();
         });
 
   }
@@ -197,6 +178,10 @@ class DiscordActivityBot extends Client {
 
   error(Text){
       logger.error(Text);
+  }
+
+  playSong(song, queueLength){
+    logger.playSong(song, queueLength);
   }
 
   LoadEvents(){
