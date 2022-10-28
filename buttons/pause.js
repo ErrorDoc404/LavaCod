@@ -14,9 +14,9 @@ module.exports = {
 
     const row = new MessageActionRow().addComponents([
       new MessageButton()
-        .setCustomId('pause')
-        .setLabel('⏸️ Pause')
-        .setStyle('PRIMARY'),
+        .setCustomId('play')
+        .setLabel('▶️ Play')
+        .setStyle('SUCCESS'),
       new MessageButton()
         .setCustomId('skip')
         .setLabel('⏭️ Skip')
