@@ -4,9 +4,17 @@ module.exports = async (client, message) => {
   if(!MusicDB.musicChannelId) return;
   if(message.channel.id == MusicDB.musicChannelId){
     if(message.author.bot) {
-      setTimeout(() => message.delete(), 3000);
+      try{
+        setTimeout(() => message.delete(), 3000);
+      } catch(e){
+        message.channel.send(`Error: ${e}`);
+      }
     } else {
-      message.delete();
+      try{
+        message.delete();
+      } catch(e){
+        message.channel.send(`Error: ${e}`);
+      }
       const play = client.Commands.get('play');
       play.run(client, message, {MusicDB});
     }
