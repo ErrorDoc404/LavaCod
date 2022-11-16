@@ -1,0 +1,33 @@
+.chat-container {
+    position: fixed;
+    height: 70px;
+    bottom: 0;
+    width: 80%;
+}
+
+.chat-join{
+    text-align: center;
+}
+
+.chat-messages{
+	max-height: 620px;
+	overflow-y: scroll;
+}
+
+.chat-other{
+    color: darkgoldenrod;
+}
+
+.chat-self{
+    color: chartreuse;
+}
+
+.chat-msg{
+    color: white;
+}
+
+.time-right{
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: .7em;
+}

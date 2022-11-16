@@ -2,10 +2,13 @@ const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: 'fix',
-  run: async (client, interaction, parms, {MusicDB}) => {
+  run: async (client, interaction, parms, { MusicDB }) => {
     let player = await client.manager.get(interaction.guildId);
-    if(!interaction.member.permissions.has('ADMINISTRATOR')) return interaction.reply({content: `You dont have permission to do that`}).catch(err => {client.error(err)});
-    if(player) player.destroy();
+    if (!interaction.member.permissions.has('ADMINISTRATOR')) return interaction.reply({ content: `You dont have permission to do that` }).catch(err => { client.error(err) });
+    if (player) {
+      client.guildQueue[player.guild] = 0;
+      player.destroy();
+    }
 
     const row = new MessageActionRow().addComponents([
       new MessageButton()
@@ -69,7 +72,7 @@ module.exports = {
       },
     };
     client.musicMessage[interaction.guildId] = await interaction.channel.messages.fetch(MusicDB.musicMessageId);
-    client.musicMessage[interaction.guildId].edit({content: `**[ Nothing Playing ]**\nJoin a voice channel and queue songs by name or url in here.`, embeds: [embed], components: [row, row1]});
-    return interaction.reply({content: `fixed`}).catch(err => {client.error(err)});
+    client.musicMessage[interaction.guildId].edit({ content: `**[ Nothing Playing ]**\nJoin a voice channel and queue songs by name or url in here.`, embeds: [embed], components: [row, row1] });
+    return interaction.reply({ content: `fixed` }).catch(err => { client.error(err) });
   }
 }
