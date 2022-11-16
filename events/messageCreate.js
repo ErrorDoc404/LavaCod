@@ -1,22 +1,22 @@
 module.exports = async (client, message) => {
   let MusicDB = await client.GetMusic(message.guild.id);
-  if (!MusicDB) return;
-  if (!MusicDB.musicChannelId) return;
-  if (message.channel.id == MusicDB.musicChannelId) {
-    if (message.author.bot) {
-      try {
+  if(!MusicDB) return;
+  if(!MusicDB.musicChannelId) return;
+  if(message.channel.id == MusicDB.musicChannelId){
+    if(message.author.bot) {
+      try{
         setTimeout(() => message.delete(), 3000);
-      } catch (e) {
+      } catch(e){
         message.channel.send(`Error: ${e}`);
       }
     } else {
-      try {
+      try{
         message.delete();
-      } catch (e) {
+      } catch(e){
         message.channel.send(`Error: ${e}`);
       }
       const play = client.Commands.get('play');
-      play.run(client, message, { MusicDB });
+      play.run(client, message, {MusicDB});
     }
     // const msg = await message.channel.messages.fetch(MusicDB.musicMessageId);
   }

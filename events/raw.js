@@ -1,7 +1,7 @@
 /**
  *
- * @param {import("../library/MusicBot ")} client
+ * @param {import("../library/DiscordActivityBot ")} client
  */
-module.exports = async (client, data) => {
-  client.manager.updateVoiceState(data);
+ module.exports = async (client, data) => {
+   client.manager.updateVoiceState(data);
 };
